@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\examplecontroller;
+use App\Http\Controllers\addcarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,4 +74,32 @@ Route::prefix('Training')->group(function(){
     });
 });
 });
+//Route::fallback(function(){
+ //  return redirect('/'); 
+//});
+Route::get('cv',function(){
+    return  view ('cv');
+});
+
+//Route::get('login',function(){
+  //  return  view ('login');
+//});
+
+//Route::post('receive', function(){
+//return 'data received';
+//})->name('receive');
+//Route::get('test1',[examplecontroller::class,'test1']);
+
+Route::get('addCar',function(){
+ return view ('addCar');
+});
+//Route::post('input', function(){
+  //  return 'data received';
+   // })->name('input');
+    Route::get('Car',[addcarController::class,'Car']) ->name('input');
+    
+    Route::post('Car',[addcarController::class,'add']) ->name('add');
+    
+
+        
 
