@@ -9,8 +9,8 @@ class addcarController extends Controller
         return view("addCar");
     }
     public function add(Request $request){
-        dd($request->all());
-        echo $request->title;
-        echo $request->price;
-        echo $request->description;
+       // dd($request->all());
+        return $request->title;
+        return $request->price;
+        return $request->description;
 }}
