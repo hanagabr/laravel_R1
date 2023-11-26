@@ -101,7 +101,9 @@ return 'data received';
 Route::get('news',[newsController::class,'news']);
 Route::post('newshow',[newsController::class,'showNews']) ->name('newshow');
 Route::post('news',[newController::class,'store'])->name('news');
-//Route::post('news',[newController::class,'create']);
+Route::get('NEWS',[newController::class,'index']);
+Route::get('UpdateNews/{id}',[newController::class,'edit']);
+//Route::put('UpdateNews/{id}',[newController::class,'update'])->name(UpdateNews);
 
 //Route::post('input', function(){
   //  return 'data received';
