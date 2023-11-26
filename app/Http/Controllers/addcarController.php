@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Car;
 
 use Illuminate\Http\Request;
 class addcarController extends Controller
@@ -9,8 +10,9 @@ class addcarController extends Controller
         return view("addCar");
     }
     public function add(Request $request){
-       // dd($request->all());
-        return $request->title;
-        return $request->price;
-        return $request->description;
-}}
+        $msg ="the title is <br>" .$request['carTitle'].
+        "the content is<br>" .$request['price'].
+        "the author is ".$request['descreption'];
+         return $msg;
+
+    }}

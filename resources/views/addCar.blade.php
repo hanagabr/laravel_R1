@@ -12,11 +12,11 @@
 
 <div class="container">
   <h2>Add Car</h2>
-  <form action="{{route('add')}}" method="post">
+  <form action="{{route('input')}}" method="post">
     @csrf
     <div class="form-group">
       <label for="title">Title:</label>
-      <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" >
+      <input type="text" class="form-control" id="title" placeholder="Enter title" name="carTitle" >
     </div>
     <div class="form-group">
       <label for="price">Price:</label>
@@ -24,14 +24,13 @@
     </div>
     <div class="form-group">
         <label for="description">Description:</label>
-        <textarea class="form-control" rows="5" id="description" name="description"></textarea>
+        <textarea class="form-control" rows="5" id="description" name="descreption"></textarea>
       </div> 
     <div class="checkbox">
-      <label><input type="checkbox" name="remember"> Published</label>
+      <label><input type="checkbox" name="published"> Published</label>
     </div>
     <button type="submit" class="btn btn-default">Add</button>
   </form>
 </div>
-
 </body>
 </html>

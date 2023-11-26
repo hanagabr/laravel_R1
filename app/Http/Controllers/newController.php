@@ -2,10 +2,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+//use Illuminate\Http\RedirectResponse;
 use App\Models\NewsData;
 
 class newController extends Controller
 {
+    private $columns=['title','content','author'];
     /**
      * Display a listing of the resource.
      */
@@ -46,7 +48,9 @@ class newController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $new=NewsData::findOrfail($id);
+        return view('NewsDetails',compact('new'));
+//
   }
 
     /**
@@ -54,7 +58,7 @@ class newController extends Controller
      */
     public function edit(string $id)
     {
-        $new=NEWS::findOrfail($id);
+        $new=NewsData::findOrfail($id);
         return view('UpdateNews',compact('new'));
     }
 
@@ -62,8 +66,11 @@ class newController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-       // return view('UpdateNews');
+    {      
+        $publish=$request->only($this->columns);
+        $publish['published']=isset($publish['published'])?true:false;
+       NewsData::where('id', $id)->update($publish);
+       return 'UPDATED';
     }
 
     /**
@@ -71,6 +78,7 @@ class newController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-    }
+        NewsData::where('id', $id)->delete();
+          return 'deleted';  
+          }
 }

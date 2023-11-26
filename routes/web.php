@@ -1,10 +1,10 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\examplecontroller;
-//use App\Http\Controllers\addcarController;
+use App\Http\Controllers\CarControler;
 use App\Http\Controllers\newsController;
 use App\Http\Controllers\newController;
+use App\Http\Controllers\addcarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,14 +102,25 @@ Route::get('news',[newsController::class,'news']);
 Route::post('newshow',[newsController::class,'showNews']) ->name('newshow');
 Route::post('news',[newController::class,'store'])->name('news');
 Route::get('NEWS',[newController::class,'index']);
-Route::get('UpdateNews/{id}',[newController::class,'edit']);
-//Route::put('UpdateNews/{id}',[newController::class,'update'])->name(UpdateNews);
+Route::get('editNews/{id}',[newController::class,'edit']);
+Route::put('UpdateNews/{id}',[newController::class,'update'])->name('UpdateNews');
+Route::get('NewsDetails/{id}',[newController::class,'show'])->name('NewsDetails');
+Route::get('deleteNews/{id}',[newController::class,'destroy']);
 
-//Route::post('input', function(){
-  //  return 'data received';
-   // })->name('input');
-   // Route::get('Car',[Car::class,'Car']) ->name('input');
-   // Route::post('Car',[Car::class,'add']) ->name('Car');
-    
+//cars table
+Route::get('addCar',function(){
+ return view ('addCar');
+});
+Route::post('input', function(){
+ return 'data received';
+   })->name('input');
+  Route::get('Car',[Car::class,'Car']) ->name('Car');
+  Route::get('CARS',[CarControler::class,'index']);
+   Route::post('input',[CarControler::class,'store']) ->name('input');
+   Route::get('editCars/{id}',[carControler::class,'edit']);
+   Route::put('UpdateCar/{id}',[carControler::class,'update'])->name('UpdateCar');
+   Route::get('carDetails/{id}',[carControler::class,'show'])->name('CarDetails');
+   Route::get('deleteCar/{id}',[carControler::class,'destroy']);
+   
 
         

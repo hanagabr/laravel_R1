@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>NEWS List</title>
+  <title>Cars List</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,13 +10,13 @@
 <body>
 
 <div class="container mt-3">
-  <h2>News </h2>
+  <h2>Cars </h2>
   <table class="table table-hover">
   <thead>
       <tr>
         <th>Title</th>
-        <th>Content</th>
-        <th>Author</th>
+        <th>price</th>
+        <th>description</th>
         <th>Published</th>
         <th>✍</th>
         <th>💌</th>
@@ -25,15 +25,15 @@
       </tr>
     </thead>
     <tbody>
-        @foreach($news as $new)
+        @foreach($car as $car)
       <tr>
-        <td>{{$new->title}}</td>
-        <td>{{$new->content}}</td>
-        <td>{{$new->author}}</td>
-        <td>{{$new->published? "yes✔" : "no❌"}}</td>
-        <td><a href="editNews/{{$new->id}}">Edit</td>
-        <td><a href="NewsDetails/{{$new->id}}">show</td>
-        <td><a href="deleteNews/{{$new->id}}">delete</td>
+        <td>{{$car->carTitle}}</td>
+        <td>{{$car->price}}</td>
+        <td>{{$car->descreption}}</td>
+        <td>{{$car->published? "yes✔" : "no❌"}}</td>
+        <td><a href="editCars/{{$car->id}}">Edit</td>
+        <td><a href="carDetails/{{$car->id}}">show</td>
+        <td><a href="deleteCar/{{$car->id}}">delete</td>
       </tr>
       @endforeach
     </tbody>

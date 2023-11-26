@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>ADD News</title>
+  <title>update news</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,26 +11,28 @@
 <body>
 
 <div class="container">
-  <h2>News form</h2>
-  <form action="{{route('news')}}" method="post">
+  <h2>update Car</h2>
+  <form action="{{route('UpdateCar',$car->id)}}" method="post">
   @csrf
+  @method('put')
     <div class="form-group">
       <label for="title">Title:</label>
-      <input type="text" class="form-control" id="email" placeholder="Enter title" name="title">
+      <input type="text" class="form-control" id="email" placeholder="Enter title" name="title" value ="{{$car->carTitle}}">
     </div>
     <div class="form-group">
       <label for="content">content:</label>
-      <textarea class="form-control" rows="5" id="content" name ="content"></textarea>
+      <textarea class="form-control" rows="5" id="content" name ="descreption" >{{$car->descreption}}</textarea>
     </div>
     <div class="form-group">
-      <label for="author">author:</label>
-      <input type="text" class="form-control" id="author" placeholder="Enter author" name="author">
+      <label for="author">price:</label>
+      <input type="text" class="form-control" id="author" placeholder="Enter price" name="price"value ="{{$car->price}}">
     </div>
 
     <div class="checkbox">
-      <label><input type="checkbox" name="published"> published</label>
+      <label><input type="checkbox" name="published" @checked($car->published)> published</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default">Update</button>
+
   </form>
 </div>
 </body>
