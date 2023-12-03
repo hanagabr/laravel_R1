@@ -106,6 +106,7 @@ Route::get('editNews/{id}',[newController::class,'edit']);
 Route::put('UpdateNews/{id}',[newController::class,'update'])->name('UpdateNews');
 Route::get('NewsDetails/{id}',[newController::class,'show'])->name('NewsDetails');
 Route::get('deleteNews/{id}',[newController::class,'destroy']);
+Route::get('trashedNews',[CarControler::class,'trashed']);
 
 //cars table
 Route::get('addCar',function(){
@@ -121,6 +122,7 @@ Route::post('input', function(){
    Route::put('UpdateCar/{id}',[carControler::class,'update'])->name('UpdateCar');
    Route::get('carDetails/{id}',[carControler::class,'show'])->name('CarDetails');
    Route::get('deleteCar/{id}',[carControler::class,'destroy']);
-   
+   Route::get('trashed',[CarControler::class,'trashed']);
+
 
         

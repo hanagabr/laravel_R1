@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\RedirectResponse;
 use App\Models\NewsData;
 
 class newController extends Controller
@@ -13,7 +13,7 @@ class newController extends Controller
      */
     public function index(){
         $news = NewsData::get();
-        return view('news', compact('news'));
+       return view('news', compact('news'));
 
     }
 
@@ -29,17 +29,38 @@ class newController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-         $news= new NewsData();
-        $news->title =$request->title;
-        $news->content =$request->content;
-        $news->author =$request->author;
-        if(isset($request->published )){
-            $news->published = true;
-        }
-        else{
-            $news->published = false;
-        }
-        $news->save();
+       //  $news= new NewsData();
+       // $news->title =$request->title;
+       // $news->content =$request->content;
+       // $news->author =$request->author;
+       $data =$request->only($this->columns);
+
+       $request->validate([
+        'title'=>'required|string',
+       'content'=>'required|string',
+    'author'=>'required|string',
+       ]);
+    //   if(isset($request->published)){
+    //$car->published = 1;
+   //}
+   //else{
+    //$car->published = 0;
+   //}
+
+       Car::create($data);
+       return'done';
+       //    $car->save();
+
+    }
+
+
+       // if(isset($request->published )){
+        //    $news->published = true;
+       // }
+       // else{
+       //     $news->published = false;
+       // }
+      //  $news->save();
         //return "news added successfully";
     }
 
@@ -48,8 +69,8 @@ class newController extends Controller
      */
     public function show(string $id)
     {
-        $new=NewsData::findOrfail($id);
-        return view('NewsDetails',compact('new'));
+        $new=_News::findOrfail($id);
+        return view('NewsDetails',compact('news'));
 //
   }
 
@@ -81,4 +102,14 @@ class newController extends Controller
         NewsData::where('id', $id)->delete();
           return 'deleted';  
           }
+          public function trashed(string $id){
+            $cars = _news::onlyTrashed()->get();
+            return view('trashed',compact(news));
+        }
+        public function restore(string $id):RedirectResponse{
+    
+            Car::where('id',$id)->restore();
+            return redirect('news');
+        }
+    
 }
