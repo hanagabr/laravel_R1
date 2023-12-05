@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title',100);
             $table->text('content');
             $table->string('author');
+            $table->string('image',100);
             $table->boolean('published');
             $table->softDelete();
 

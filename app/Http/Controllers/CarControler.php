@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 use App\Models\Car;
+use App\traits\common;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 
 class CarControler extends Controller
 {
-    private $columns=['carTitle','price','descreption','published'];
+    private $columns=['carTitle','price','descreption','image'];
 
     /**
      * Display a listing of the resource.
@@ -16,7 +17,7 @@ class CarControler extends Controller
     public function index()
     {
         $car = Car::get();
-        return view('cars', compact('cars'));
+        return view('cars', compact('car'));
 
     }
 
@@ -33,27 +34,30 @@ class CarControler extends Controller
      */
     public function store(Request $request)
     {
-       // $car= new Car();
-       // $car->carTitle =$request->carTitle;
-       // $car->price =$request->price;
-       // $car->descreption =$request->descreption;
+      // $car= new Car();
+     //$car->carTitle =$request->carTitle;
+      // $car->price =$request->price;
+      //  $car->descreption =$request->descreption;
+       $message=[ 'carTitle.required'=>'title is required',
+       'descreption.required'=>'descreption is required',
+       'price.required'=>'price is required' 
+    ];
        $data =$request->only($this->columns);
 
        $request->validate([
         'carTitle'=>'required|string',
        'price'=>'required|string',
-    'descreption'=>'required|string',
-       ]);
-    //   if(isset($request->published)){
-    //$car->published = 1;
-  // }
-  // else{
-  //  $car->published = 0;
-   //}
+      'descreption'=>'required|string',
+      'image'=>'required|mimes:png,jpg,JPEG|max:2048',
+
+       ] ,$message);
+ $fileName =$this->uploadFile($request->image,'assets/images');
+  $data['image']=$fileName;
+  $data['published']=isset($request[published]);
 
        Car::create($data);
        return'done';
-       //    $car->save();
+         $car->save();
 
     }
 
@@ -82,6 +86,27 @@ class CarControler extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $file_name=$request->image;
+        $Image= $request->file('Image');
+        if('$Image'!= ''){
+        $request->validate([
+            'carTitle'=>'required|string',
+           'price'=>'required|string',
+          'descreption'=>'required|string',
+          'image'=>'required|mimes:png,jpg,jpeg|max:2048',]);
+          $file_name=$request->name.rand().'.' .$Image->getClientOriginalExtension();
+          $file->move($path, $file_name);
+
+        }
+        else{
+
+            $request->validate([
+                'carTitle'=>'required|string',
+               'price'=>'required|string',
+              'descreption'=>'required|string',
+            ]);   
+        }
+
         $publish=$request->only($this->columns);
         $publish['published']=isset($publish['published'])?true:false;
 

@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\NewsData;
@@ -33,22 +32,28 @@ class newController extends Controller
        // $news->title =$request->title;
        // $news->content =$request->content;
        // $news->author =$request->author;
-       $data =$request->only($this->columns);
+       $message=[
+        'title.required'=>'title is required',
+        'content.required'=>'content is required',
+        'author.required'=>'author is required',
 
-       $request->validate([
+       ];
+      //$data =$request->only($this->columns);
+
+      $data = $request->validate([
         'title'=>'required|string',
-       'content'=>'required|string',
-    'author'=>'required|string',
-       ]);
-    //   if(isset($request->published)){
+        'content'=>'required|string',
+        'author'=>'required|string',
+       ],$message);
+    //  $data['published'] = isset($request[published]);
     //$car->published = 1;
    //}
    //else{
     //$car->published = 0;
    //}
 
-       Car::create($data);
-       return'done';
+     // NewsData::create($data);
+      // return'done';
        //    $car->save();
 
     }
@@ -62,16 +67,16 @@ class newController extends Controller
        // }
       //  $news->save();
         //return "news added successfully";
-    }
+    
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $new=_News::findOrfail($id);
+        $new=News::findOrfail($id);
         return view('NewsDetails',compact('news'));
-//
+
   }
 
     /**
@@ -103,13 +108,13 @@ class newController extends Controller
           return 'deleted';  
           }
           public function trashed(string $id){
-            $cars = _news::onlyTrashed()->get();
+            $new = News::onlyTrashed()->get();
             return view('trashed',compact(news));
         }
         public function restore(string $id):RedirectResponse{
     
-            Car::where('id',$id)->restore();
+            News::where('id',$id)->restore();
             return redirect('news');
         }
     
-}
+    }

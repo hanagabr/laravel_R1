@@ -12,7 +12,7 @@
 
 <div class="container">
   <h2>update Car</h2>
-  <form action="{{route('UpdateCar',$car->id)}}" method="post">
+  <form action="{{route('UpdateCar',$car->id)}}" method="post" enctype="multipart/form-data">
   @csrf
   @method('put')
     <div class="form-group">
@@ -27,12 +27,18 @@
       <label for="author">price:</label>
       <input type="text" class="form-control" id="author" placeholder="Enter price" name="price"value ="{{$car->price}}">
     </div>
+    <div class="custom-file mb-3">
+      <input type="file" class="custom-file-input" id="customFile" name="image" value="{{$car->image}}">
+      <label class="custom-file-label" for="customFile">Choose image</label>
+        @error('image')
+        {{$message}}
+        @enderror
+      </div> 
 
     <div class="checkbox">
       <label><input type="checkbox" name="published" @checked($car->published)> published</label>
     </div>
     <button type="submit" class="btn btn-default">Update</button>
-
   </form>
 </div>
 </body>

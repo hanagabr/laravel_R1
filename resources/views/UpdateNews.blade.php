@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+  
 <div class="container">
   <h2>update news</h2>
   <form action="{{route('UpdateNews',$new->id)}}" method="post">
@@ -27,6 +27,11 @@
       <label for="author">author:</label>
       <input type="text" class="form-control" id="author" placeholder="Enter author" name="author"value ="{{$new->author}}">
     </div>
+    <div class="form-group">
+        <label for="image">image:</label>
+        <input type="image" class="form-control" rows="5" id="image" name="image" value="{{old('image')}}" >
+      
+      </div> 
 
     <div class="checkbox">
       <label><input type="checkbox" name="published" @checked($new->published)> published</label>

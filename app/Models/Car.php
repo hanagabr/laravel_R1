@@ -12,7 +12,7 @@ class Car extends Model
     protected $fillable=[
         'carTitle',
         'price',
-        'descreption','published'
+        'descreption','image'
         
     ];
 

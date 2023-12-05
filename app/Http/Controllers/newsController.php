@@ -15,7 +15,7 @@ class newsController extends Controller
         "the content is<br>" .$request['content'].
         "the author is ".$request['author'];
          return $msg;
-
  }
+ 
    }
     

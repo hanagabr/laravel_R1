@@ -5,6 +5,7 @@ use App\Http\Controllers\CarControler;
 use App\Http\Controllers\newsController;
 use App\Http\Controllers\newController;
 use App\Http\Controllers\addcarController;
+use App\Http\Controllers\DataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,11 +87,13 @@ Route::get('cv',function(){
 Route::get('login',function(){
    return  view ('login');
 });
-Route::get('receive', function(){
+Route::post('receive', function(){
 return 'data received';
 })->name('receive');
 
-Route::get('test1',[examplecontroller::class,'test1']);
+Route::post('test1',[examplecontroller::class,'test1']);
+Route::get('upload',[examplecontroller::class,'showUpload']);
+Route::post('upload',[examplecontroller::class,'Insert'])->name('upload');
 
 Route::get('addnews',function(){
  return view ('addnews');
@@ -99,30 +102,31 @@ Route::post('newshow', function(){
 return 'data received';
 })->name('newshow');
 Route::get('news',[newsController::class,'news']);
-Route::post('newshow',[newsController::class,'showNews']) ->name('newshow');
+Route::post('newshow',[newsController::class,'showNews'])->name('newshow');
 Route::post('news',[newController::class,'store'])->name('news');
 Route::get('NEWS',[newController::class,'index']);
 Route::get('editNews/{id}',[newController::class,'edit']);
 Route::put('UpdateNews/{id}',[newController::class,'update'])->name('UpdateNews');
 Route::get('NewsDetails/{id}',[newController::class,'show'])->name('NewsDetails');
 Route::get('deleteNews/{id}',[newController::class,'destroy']);
-Route::get('trashedNews',[CarControler::class,'trashed']);
+Route::get('trashedNews',[newControler::class,'trashed']);
+Route::get('test',[DataController::class,'test']);
 
 //cars table
-Route::get('addCar',function(){
- return view ('addCar');
-});
-Route::post('input', function(){
- return 'data received';
+  Route::get('addCar',function(){
+  return view ('addCar');
+     });
+  Route::post('input', function(){
+  return 'data received';
    })->name('input');
-  Route::get('Car',[Car::class,'Car']) ->name('Car');
-  Route::get('CARS',[CarControler::class,'index']);
+   Route::get('Car',[Car::class,'Car']) ->name('Car');
+   Route::get('CARS',[CarControler::class,'index']);
    Route::post('input',[CarControler::class,'store']) ->name('input');
    Route::get('editCars/{id}',[carControler::class,'edit']);
    Route::put('UpdateCar/{id}',[carControler::class,'update'])->name('UpdateCar');
    Route::get('carDetails/{id}',[carControler::class,'show'])->name('CarDetails');
    Route::get('deleteCar/{id}',[carControler::class,'destroy']);
    Route::get('trashed',[CarControler::class,'trashed']);
-
+   
 
         
