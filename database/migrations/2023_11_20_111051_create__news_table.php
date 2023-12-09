@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('author');
             $table->string('image',100);
             $table->boolean('published');
-            $table->softDelete();
+           // $table->softDelete();
 
         });
     }

@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\examplecontroller;
+use App\Http\Controllers\placeController;
 use App\Http\Controllers\CarControler;
 use App\Http\Controllers\newsController;
 use App\Http\Controllers\newController;
@@ -91,7 +92,17 @@ Route::post('receive', function(){
 return 'data received';
 })->name('receive');
 
-Route::post('test1',[examplecontroller::class,'test1']);
+
+////
+Route::get('addPlace',function(){
+  return view ('addPlace');
+ }); 
+Route::get('place',[examplecontroller::class,'place']);
+Route::post('add',[examplecontroller::class,'add']);
+Route::post('place',[examplecontroller::class,'place'])->name('place');
+Route::post('addPlace',[placeController::class,'store'])->name('addPlace');
+
+////
 Route::get('upload',[examplecontroller::class,'showUpload']);
 Route::post('upload',[examplecontroller::class,'Insert'])->name('upload');
 

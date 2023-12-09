@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 use App\Models\Car;
-use App\traits\common;
+use app\traits\common;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 
 class CarControler extends Controller
 {
+
     private $columns=['carTitle','price','descreption','image'];
 
     /**
@@ -20,7 +21,7 @@ class CarControler extends Controller
         return view('cars', compact('car'));
 
     }
-
+      
     /**
      * Show the form for creating a new resource.
      */
@@ -48,12 +49,12 @@ class CarControler extends Controller
         'carTitle'=>'required|string',
        'price'=>'required|string',
       'descreption'=>'required|string',
-      'image'=>'required|mimes:png,jpg,JPEG|max:2048',
+      'image'=>'required|sometimes:png,jpg,JPEG|max:2048',
 
-       ] ,$message);
- $fileName =$this->uploadFile($request->image,'assets/images');
-  $data['image']=$fileName;
-  $data['published']=isset($request[published]);
+       ] ,$message);       
+      $fileName = $this->uploadFile($request->image,'assets/images');
+      $data['image']= $fileName;
+      $data['published']= isset($request[published]);
 
        Car::create($data);
        return'done';
@@ -93,7 +94,7 @@ class CarControler extends Controller
             'carTitle'=>'required|string',
            'price'=>'required|string',
           'descreption'=>'required|string',
-          'image'=>'required|mimes:png,jpg,jpeg|max:2048',]);
+          'image'=>'required|sometimes:png,jpg,jpeg|max:2048',]);
           $file_name=$request->name.rand().'.' .$Image->getClientOriginalExtension();
           $file->move($path, $file_name);
 
