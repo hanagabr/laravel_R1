@@ -19,10 +19,10 @@ public function addPlace(){
 }
 public function add(Request $request){
         $place= new Place();
-    $place->title =$request->title;
-    $place->rate =$request->rate;
-    $place->from =$request->from;
-    $place->to =$request->to;
+     $place->title =$request->title;
+     $place->rate =$request->rate;
+     $place->from =$request->from;
+     $place->to =$request->to;
      $place->name =$request->name;
      $place->shortdesc =$request->shortdesc;
       $place->image =$request->image;

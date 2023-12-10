@@ -14,6 +14,5 @@ class addcarController extends Controller
         $msg ="the title is <br>" .$request['carTitle'].
         "the content is<br>" .$request['price'].
         "the author is ".$request['descreption'];
-
          return $msg;
     }}

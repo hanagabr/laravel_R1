@@ -98,9 +98,10 @@ Route::get('addPlace',function(){
   return view ('addPlace');
  }); 
 Route::get('place',[examplecontroller::class,'place']);
-Route::post('add',[examplecontroller::class,'add']);
-Route::post('place',[examplecontroller::class,'place'])->name('place');
+//Route::post('add',[placeController::class,'add']);
 Route::post('addPlace',[placeController::class,'store'])->name('addPlace');
+Route::get('placeList',[placeController::class,'index'])->name('placeList');
+Route::get('placeList/{id}',[placeController::class,'destroy']);
 
 ////
 Route::get('upload',[examplecontroller::class,'showUpload']);
