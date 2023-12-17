@@ -35,6 +35,14 @@
         @error('description')
         {{$message}}
         @enderror
+        <div class="form-group">
+      <label for="category">category:</label>
+      <select name="category_id" id="category_id">
+      <option value="">select category</option>
+        @foreach($categories as $category)
+        <option value="{{$category->id}}">{{$category->categoryName}}</option>
+        @endforeach
+    </div>
 
       </div> 
       <div class="custom-file mb-3">

@@ -11,8 +11,12 @@ class Car extends Model
     protected $fillable=[
         'carTitle',
         'price',
-        'descreption','image'
-        
+        'published',
+        'descreption',
+        'image',
+        'category_id'   
     ];
-
+public function category(){
+    return $this->belongsTo(Category::class);
+}
 }

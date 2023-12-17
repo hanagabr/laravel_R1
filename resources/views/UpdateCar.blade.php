@@ -27,6 +27,15 @@
       <label for="author">price:</label>
       <input type="text" class="form-control" id="author" placeholder="Enter price" name="price"value ="{{$car->price}}">
     </div>
+    <div class="form-group">
+      <label for="category">category:</label>
+      <select name="category_id" id="category_id">       
+      <option value=""></option>
+        @foreach($categories as $category=>$categoryName)
+        <option value="{{$category}}"{{($category->categoryName)?'selected':''}}> {{$categoryName}}</option>
+        @endforeach
+    </div>
+
     <div class="custom-file mb-3">
       <input type="file" class="custom-file-input" id="customFile" name="image" value="{{$car->image}}">
       <label class="custom-file-label" for="customFile">Choose image</label>

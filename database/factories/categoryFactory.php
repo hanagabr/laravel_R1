@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Car>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\category>
  */
-class CarFactory extends Factory
+class categoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,12 +17,9 @@ class CarFactory extends Factory
     public function definition(): array
     {
         return [
-            'carTitle' => fake()->company(),
-            'price' => fake()->numberBetween($min= 6000, $max= 10000),
-            'descreption' => fake()->text(),
-            'published' => 1,
-            'image' => fake()->imageurl(800,600),
+            'categoryName'=>fake()->company(),
             'category_id' => fake()->numberBetween($min= 1, $max= 20),
+
         ];
     }
 }

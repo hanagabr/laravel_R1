@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Car;
+use App\Models\Category;
 use app\traits\common;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 class CarControler extends Controller
 {
 
-    private $columns=['carTitle','price','descreption','image'];
+    private $columns=['carTitle','price','descreption','image','category_id'];
 
     /**
      * Display a listing of the resource.
@@ -27,8 +28,10 @@ class CarControler extends Controller
      */
     public function create()
     {
-        return view('addCars');
+       $categories=Category::select('id','categoryName')->get();
+        return view('addCars', compact('categories'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -39,27 +42,25 @@ class CarControler extends Controller
      //$car->carTitle =$request->carTitle;
       // $car->price =$request->price;
       //  $car->descreption =$request->descreption;
-       $message=[ 'carTitle.required'=>'title is required',
+       $message=['carTitle.required'=>'title is required',
        'descreption.required'=>'descreption is required',
        'price.required'=>'price is required' 
     ];
        $data =$request->only($this->columns);
-
        $request->validate([
         'carTitle'=>'required|string',
        'price'=>'required|string',
       'descreption'=>'required|string',
+      'category_id'=>'required|string',
       'image'=>'required|sometimes:png,jpg,JPEG|max:2048',
 
        ] ,$message);       
       $fileName = $this->uploadFile($request->image,'assets/images');
       $data['image']= $fileName;
       $data['published']= isset($request[published]);
-
        Car::create($data);
        return'done';
          $car->save();
-
     }
 
     /**
@@ -76,9 +77,10 @@ class CarControler extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
+    { 
         $car=Car::findOrfail($id);
-        return view('UpdateCar',compact('car'));
+       $categories=Category::select('id','categoryName')->get();
+        return view('UpdateCar',compact('car','categories'));
 
     }
 
@@ -94,10 +96,11 @@ class CarControler extends Controller
             'carTitle'=>'required|string',
            'price'=>'required|string',
           'descreption'=>'required|string',
+          'category_id'=>'required|floot',
           'image'=>'required|sometimes:png,jpg,jpeg|max:2048',]);
+
           $file_name=$request->name.rand().'.' .$Image->getClientOriginalExtension();
           $file->move($path, $file_name);
-
         }
         else{
 
@@ -105,6 +108,8 @@ class CarControler extends Controller
                 'carTitle'=>'required|string',
                'price'=>'required|string',
               'descreption'=>'required|string',
+              'category_id'=>'required|string',
+
             ]);   
         }
 

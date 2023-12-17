@@ -8,19 +8,25 @@
 <body>
     <br>
     <br>
-    <table class="table table-dark table-hover">
+    <table class="table table-bordered">
     <thead>
       <tr>
-        <th>car title :</th>
+        <th>car title:</th>
         <th>car description:</th>
         <th>car price</th>
+        <th>car category</th>
+
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>{{$car->carTitle}}</td>
         <td>{{$car->descreption}}</td>
-        <td>{{$car->price}}</td></tr>
+        <td>{{$car->price}}</td>
+        <td>{{$car->category->categoryName}}</td>
+      </tr>
+
+      </tr>
 </tbody>
 </table>
 </body>
