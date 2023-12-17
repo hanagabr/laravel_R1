@@ -51,7 +51,7 @@ class CarControler extends Controller
         'carTitle'=>'required|string',
        'price'=>'required|string',
       'descreption'=>'required|string',
-      'category_id'=>'required|string',
+      'category_id'=>'required',
       'image'=>'required|sometimes:png,jpg,JPEG|max:2048',
 
        ] ,$message);       
@@ -96,7 +96,7 @@ class CarControler extends Controller
             'carTitle'=>'required|string',
            'price'=>'required|string',
           'descreption'=>'required|string',
-          'category_id'=>'required|floot',
+          'category_id'=>'required',
           'image'=>'required|sometimes:png,jpg,jpeg|max:2048',]);
 
           $file_name=$request->name.rand().'.' .$Image->getClientOriginalExtension();

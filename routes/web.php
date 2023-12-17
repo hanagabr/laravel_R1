@@ -7,7 +7,7 @@ use App\Http\Controllers\newsController;
 use App\Http\Controllers\newController;
 use App\Http\Controllers\addcarController;
 use App\Http\Controllers\DataController;
-
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -139,6 +139,7 @@ Route::get('test',[DataController::class,'test']);
    Route::get('carDetails/{id}',[carControler::class,'show'])->name('CarDetails');
    Route::get('deleteCar/{id}',[carControler::class,'destroy']);
    Route::get('trashed',[CarControler::class,'trashed']);
-   
-
-        
+   Auth::routes(['verify'=>true]);
+   Route::get ('mail',[MailController::class,'mailform']);
+  Route::post('sendMail',[MailController::class,'maildata'])->name('sendMail');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

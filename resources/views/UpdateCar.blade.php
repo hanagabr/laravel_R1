@@ -30,9 +30,8 @@
     <div class="form-group">
       <label for="category">category:</label>
       <select name="category_id" id="category_id">       
-      <option value=""></option>
-        @foreach($categories as $category=>$categoryName)
-        <option value="{{$category}}"{{($category->categoryName)?'selected':''}}> {{$categoryName}}</option>
+        @foreach($categories as $category)
+        <option value="{{$category->id}}"@selected($category->id==$car->category_id)>{{$category->categoryName}}</option>
         @endforeach
     </div>
 
