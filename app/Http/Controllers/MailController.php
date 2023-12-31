@@ -21,11 +21,10 @@ $mess = $request->mess;
 $mailData = [
 'url' => 'https://sandroft.com/',
 ];
-$send_mail = "sahincseiu@gmail.com";
+$send_mail = "hana@example.com";
 Mail::to($send_mail)->send( new SendMail($name, $email, $sub, $mess));
 $senderMessage = "thanks for your message , we will reply you in later";
-Mail::to( $email)->send(new
-SendMessageToEndUser($name,$senderMessage,$mailData));
+Mail::to( $email)->send(newSendMessageToEndUser($name,$senderMessage,$mailData));
 return "Mail Send Successfully";
 }
 }

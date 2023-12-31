@@ -18,7 +18,6 @@ class categoryFactory extends Factory
     {
         return [
             'categoryName'=>fake()->company(),
-            'category_id' => fake()->numberBetween($min= 1, $max= 20),
 
         ];
     }

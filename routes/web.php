@@ -107,15 +107,17 @@ Route::get('placeList/{id}',[placeController::class,'destroy']);
 Route::get('upload',[examplecontroller::class,'showUpload']);
 Route::post('upload',[examplecontroller::class,'Insert'])->name('upload');
 
-Route::get('addnews',function(){
- return view ('addnews');
-});
+Route::get('session',[examplecontroller::class,'mysession']);
+
+//Route::get('addnews',function(){
+// return view ('addnews');
+//});
 Route::post('newshow', function(){
 return 'data received';
 })->name('newshow');
-Route::get('news',[newsController::class,'news']);
-Route::post('newshow',[newsController::class,'showNews'])->name('newshow');
-Route::post('news',[newController::class,'store'])->name('news');
+//Route::get('news',[newsController::class,'news']);
+//Route::post('newshow',[newsController::class,'showNews'])->name('newshow');
+//Route::post('news',[newController::class,'store'])->name('news');
 Route::get('NEWS',[newController::class,'index']);
 Route::get('editNews/{id}',[newController::class,'edit']);
 Route::put('UpdateNews/{id}',[newController::class,'update'])->name('UpdateNews');
@@ -132,7 +134,7 @@ Route::get('test',[DataController::class,'test']);
   return 'data received';
    })->name('input');
    Route::get('Car',[Car::class,'Car']) ->name('Car');
-   Route::get('CARS',[CarControler::class,'index']);
+   Route::get('CARS',[CarControler::class,'index'])->middleware('verified');
    Route::post('input',[CarControler::class,'store']) ->name('input');
    Route::get('editCars/{id}',[carControler::class,'edit']);
    Route::put('UpdateCar/{id}',[carControler::class,'update'])->name('UpdateCar');
@@ -143,3 +145,32 @@ Route::get('test',[DataController::class,'test']);
    Route::get ('mail',[MailController::class,'mailform']);
   Route::post('sendMail',[MailController::class,'maildata'])->name('sendMail');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// routes/web.php
+Route::group(
+  [
+
+'prefix' => LaravelLocalization::setLocale(),
+      'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){  
+      Route::get('addnews',function(){
+        return view ('addnews');
+       });
+        
+      Route::get('news',[newsController::class,'news']);
+      Route::post('newshow',[newsController::class,'showNews'])->name('newshow');
+      Route::post('news',[newController::class,'store'])->name('news');
+      Route::get('addCar',function(){
+        return view ('addCar');
+           });
+        Route::post('input', function(){
+        return 'data received';
+         })->name('input');
+         Route::get('Car',[Car::class,'Car']) ->name('Car');
+         Route::get('CARS',[CarControler::class,'index'])->middleware('verified');
+         Route::post('input',[CarControler::class,'store']) ->name('input');
+      
+    });
+
+
+
+/** OTHER PAGES THAT SHOULD NOT BE LOCALIZED **/

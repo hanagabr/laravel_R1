@@ -33,9 +33,9 @@ class newController extends Controller
        // $news->content =$request->content;
        // $news->author =$request->author;
        $message=[
-        'title.required'=>'title is required',
-        'content.required'=>'content is required',
-        'author.required'=>'author is required',
+        'title.required'=>'{{__messages.titleRequired}}',
+        'content.required'=>'{{__messages.contentRequired}}',
+        'author.required'=>'{{__messages.authorRequired}}',
 
        ];
       //$data =$request->only($this->columns);

@@ -11,26 +11,33 @@
 <body>
 
 <div class="container">
-  <h2>News form</h2>
+<h2>{{ __('messages.contactForm')}}</h2>
+
   <form action="{{route('news')}}" method="post">
   @csrf
     <div class="form-group">
-      <label for="title">Title:</label>
-      <input type="text" class="form-control" id="email" placeholder="Enter title" name="title">
+      <label for="title">{{ __('messages.title')}}:</label>
+      <input type="text" class="form-control" id="email" placeholder="{{__('messages.enter title')}}" name="title">
     </div>
     <div class="form-group">
-      <label for="content">content:</label>
+      <label for="content">{{ __('messages.content')}}:</label>
       <textarea class="form-control" rows="5" id="content" name ="content"></textarea>
     </div>
     <div class="form-group">
-      <label for="author">author:</label>
-      <input type="text" class="form-control" id="author" placeholder="Enter author" name="author">
+      <label for="author">{{ __('messages.author')}}:</label>
+      <input type="text" class="form-control" id="author" placeholder="{{__('messages.enter author')}}" name="author">
     </div>
 
     <div class="checkbox">
-      <label><input type="checkbox" name="published"> published</label>
+      <label><input type="checkbox" name="published"> {{ __('messages.published')}}</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default">{{ __('messages.submit')}}
+</button>
+
+<div>
+       <a href="{{ LaravelLocalization::getLocalizedURL('en') }}">{{__('messages.english')}}</a>
+       <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}">{{__('messages.arabic')}}</a>
+</div>
   </form>
 </div>
 </body>

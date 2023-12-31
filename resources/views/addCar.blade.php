@@ -11,18 +11,19 @@
 <body>
 
 <div class="container">
-  <h2>Add Car</h2>
+  <h2>{{ __('messages.addCar')}}</h2>
+
   <form action="{{route('input')}}" method="post">
     @csrf
     <div class="form-group">
-      <label for="title">Title:</label>
+      <label for="title">{{__('messages.text')}}:</label>
       <input type="text" class="form-control" id="title" placeholder="Enter title" name="carTitle" >
       @error('title')
         {{$message}}
         @enderror
     </div>
     <div class="form-group">
-      <label for="price">Price:</label>
+      <label for="price">{{__('messages.price')}}:</label>
       <input type="number" class="form-control" id="price" placeholder="Enter Price" name="price" >
       @error('price')
         {{$message}}
@@ -30,16 +31,16 @@
 
     </div>
     <div class="form-group">
-        <label for="description">Description:</label>
+        <label for="description">{{__('messages.description')}}:</label>
         <textarea class="form-control" rows="5" id="description" name="descreption"></textarea>
         @error('description')
         {{$message}}
         @enderror
         <div class="form-group">
-      <label for="category">category:</label>
+      <label for="category">{{__('messages.category')}}:</label>
       <select name="category_id" id="category_id">
       <option value="">select category</option>
-        @foreach($categories as $category)
+         @foreach($categories as $category)
         <option value="{{$category->id}}">{{$category->categoryName}}</option>
         @endforeach
     </div>
@@ -47,15 +48,20 @@
       </div> 
       <div class="custom-file mb-3">
       <input type="file" class="custom-file-input" id="customFile" name="image">
-      <label class="custom-file-label" for="customFile">Choose image</label>
+      <label class="custom-file-label" for="customFile">{{__('messages.chooseImage')}}</label>
         @error('image')
         {{$message}}
         @enderror
       </div> 
     <div class="checkbox">
-      <label><input type="checkbox" name="published"> Published</label>
+      <label><input type="checkbox" name="published">{{ __('messages.published')}}</label>
     </div>
     <button type="submit" class="btn btn-default">Add</button>
+    <div>
+       <a href="{{ LaravelLocalization::getLocalizedURL('en') }}">{{__('messages.english')}}</a>
+       <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}">{{__('messages.arabic')}}</a>
+</div>
+
   </form>
 </div>
 <script>

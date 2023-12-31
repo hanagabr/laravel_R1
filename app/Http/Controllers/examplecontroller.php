@@ -8,9 +8,14 @@ use App\traits\common;
 class examplecontroller extends Controller
 {    
 use common;
-public function test1(){
-    return view("login");
+public function mysession(){
+    session()->put('test', 'First Laravel session');
+           session()->forget('test');
+
+        $data = session('test');
+    return view("session",compact('data'));
 }
+
 public function place(){
     return view("place");
 }
